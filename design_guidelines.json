@@ -1,0 +1,263 @@
+{
+  "app_name": "Career Connect",
+  "personality": "1 iOS-Native Clean",
+  "personality_one_liner": "A structured, highly scannable, and trust-inspiring mobile interface driven by clear hierarchy, navy professionalism, and teal actionability.",
+  "color": {
+    "surface": "#FFFFFF",
+    "onSurface": "#0F172A",
+    "surfaceSecondary": "#F8FAFC",
+    "onSurfaceSecondary": "#334155",
+    "surfaceTertiary": "#F1F5F9",
+    "onSurfaceTertiary": "#475569",
+    "surfaceInverse": "#0F172A",
+    "onSurfaceInverse": "#F8FAFC",
+    "brand": "#1E3A8A",
+    "brandPrimary": "#0D9488",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#1E40AF",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#CCFBF1",
+    "onBrandTertiary": "#0F766E",
+    "success": "#10B981",
+    "onSuccess": "#FFFFFF",
+    "warning": "#F59E0B",
+    "onWarning": "#FFFFFF",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#E2E8F0",
+    "borderStrong": "#CBD5E1",
+    "divider": "#F1F5F9"
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Plus Jakarta Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Maintain generous vertical rhythm for scannability. Minimum 56pt tappable height. Ensure sticky CTAs do not cover content.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": "true",
+    "do's": [
+      "Use for bottom tab bars when content scrolls behind.",
+      "Use for sticky 'Apply Now' bottom containers on Job Details.",
+      "Use for pinned filter chips rows in Job Listings.",
+      "Overlay hero cards with blurred brandTertiary for depth."
+    ],
+    "dont's": [
+      "Never blur body text regions or form fields.",
+      "Do not use on regular list rows or data tables."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Landing / Hero",
+      "purpose": "First entry point introducing the platform with search and featured jobs.",
+      "states": {
+        "loading": "Centered brand spinner",
+        "empty": "N/A",
+        "error": "Error fetching featured jobs + Retry button"
+      },
+      "layout": "Hero image with top-down gradient scrim. A prominent search bar floating below the safe area. Two horizontal scrollable sections: Job Categories (chips) and Featured Jobs (cards). CTA sticky at the bottom for unauthenticated users."
+    },
+    {
+      "name": "Login / Register",
+      "purpose": "Role-based authentication (Seeker, Employer).",
+      "states": {
+        "loading": "Button spinner during auth",
+        "empty": "N/A",
+        "error": "Inline text under inputs for invalid credentials"
+      },
+      "layout": "Segmented control at the top to toggle Seeker/Employer. Clean, single-column input form. Large primary CTA button. Social login options separated by 'OR' divider."
+    },
+    {
+      "name": "Job Seeker Dashboard",
+      "purpose": "Home for seekers showing active applications, saved jobs, and recommended roles.",
+      "states": {
+        "loading": "Skeleton cards for recommended jobs",
+        "empty": "Illustration + 'Start exploring jobs to see recommendations'",
+        "error": "Failed to load dashboard + Retry"
+      },
+      "layout": "Greeting header. 'Applications Status' quick-stat cards (Applied, Interviewing). Vertical list of 'Jobs For You'. Glass bottom tab bar (Home, Search, Apps, Profile)."
+    },
+    {
+      "name": "Employer Dashboard",
+      "purpose": "Command center for employers to manage jobs and candidates.",
+      "states": {
+        "loading": "Skeleton rows for recent applicants",
+        "empty": "Illustration + 'Post your first job to start receiving applications'",
+        "error": "Failed to load stats + Retry"
+      },
+      "layout": "Real-time stats row (Active Jobs, Total Applicants). 'Action Needed' horizontal scroll (e.g., Unread Applications). Recent candidates presented in compact cards instead of tables. Floating Action Button (FAB) to Post Job."
+    },
+    {
+      "name": "Admin Dashboard",
+      "purpose": "Platform oversight, statistics, and pending approvals.",
+      "states": {
+        "loading": "Stat cards skeleton",
+        "empty": "No pending approvals",
+        "error": "Network error + Retry"
+      },
+      "layout": "Grid of KPIs (Total Users, Live Jobs). Section for 'Pending Employer Approvals' as actionable list rows. Navigation mapped via a drawer or tab bar."
+    },
+    {
+      "name": "Job Listing",
+      "purpose": "Search results with advanced filtering and pagination.",
+      "states": {
+        "loading": "Skeleton list rows",
+        "empty": "No jobs found for criteria + 'Clear Filters' CTA",
+        "error": "Search failed + Retry"
+      },
+      "layout": "Sticky search header with horizontally scrolling filter chips (Location, Type, Salary). Vertical list of job cards. Each card shows Logo, Title, Company, Location, Salary, and a Save icon."
+    },
+    {
+      "name": "Job Details",
+      "purpose": "Full job description and application initiation.",
+      "states": {
+        "loading": "Skeleton text blocks",
+        "empty": "Job no longer available",
+        "error": "Could not load job + Retry"
+      },
+      "layout": "Top section: Company Logo + Title + Badges (Type, Level). Scrollable body: Description, Requirements, Benefits. Sticky bottom container (glassmorphism) with primary 'Apply Now' CTA and Secondary 'Save' button."
+    },
+    {
+      "name": "Post Job Form",
+      "purpose": "Employer form to create or edit a job listing.",
+      "states": {
+        "loading": "Saving state on CTA",
+        "empty": "N/A",
+        "error": "Form validation errors inline"
+      },
+      "layout": "Single-column scrollable form. Labels above inputs. Grouped sections (Details, Requirements, Salary). Sticky primary CTA 'Publish Job' over a keyboard-avoiding view."
+    },
+    {
+      "name": "Application Management",
+      "purpose": "Employer view of candidates applied to a specific job.",
+      "states": {
+        "loading": "Skeleton candidate list",
+        "empty": "Illustration + 'No applicants yet'",
+        "error": "Failed to load candidates + Retry"
+      },
+      "layout": "Segmented control or horizontal chips acting as Kanban stages (New, Review, Shortlisted, Hired). Candidate cards showing Avatar, Name, Experience, and bottom action row (Move Stage, Reject)."
+    },
+    {
+      "name": "Application Tracking",
+      "purpose": "Seeker timeline of job applications.",
+      "states": {
+        "loading": "Skeleton application cards",
+        "empty": "Illustration + 'You haven't applied to any jobs yet'",
+        "error": "Failed to load history + Retry"
+      },
+      "layout": "List of applied jobs. Each card includes a vertical timeline or clear color-coded status badge (e.g., Teal for Interviewing, Red for Rejected, Navy for Applied)."
+    },
+    {
+      "name": "Profile Settings",
+      "purpose": "Manage user details, resumes, logos, and preferences.",
+      "states": {
+        "loading": "Skeleton form",
+        "empty": "N/A",
+        "error": "Failed to update + Toast notification"
+      },
+      "layout": "Avatar/Logo upload section at the top. Form fields for details. Dedicated section for Resume PDF upload (Seeker). Save changes button at the bottom."
+    },
+    {
+      "name": "Saved Jobs",
+      "purpose": "Seeker's bookmarked opportunities.",
+      "states": {
+        "loading": "Skeleton list",
+        "empty": "Illustration + 'No saved jobs yet'",
+        "error": "Failed to load + Retry"
+      },
+      "layout": "Vertical list of job cards. Swipe-to-delete or explicit 'Remove' icon on each card."
+    },
+    {
+      "name": "Notifications",
+      "purpose": "Alerts for application updates, new jobs, and messages.",
+      "states": {
+        "loading": "Skeleton rows",
+        "empty": "Illustration + 'You are all caught up!'",
+        "error": "Failed to load + Retry"
+      },
+      "layout": "Simple vertical list grouped by date (Today, Yesterday). Unread items highlighted with a subtle `brandTertiary` background."
+    },
+    {
+      "name": "Contact & About",
+      "purpose": "Platform support and information.",
+      "states": {
+        "loading": "Spinner",
+        "empty": "N/A",
+        "error": "Network error + Retry"
+      },
+      "layout": "Accordion-style FAQs. Simple contact form. Links to terms and privacy policies."
+    }
+  ],
+  "images": {
+    "hero_background": {
+      "url": "https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg",
+      "dark": "https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg",
+      "alt": "Modern corporate office building glass facade"
+    },
+    "employer_onboarding": {
+      "url": "https://images.unsplash.com/photo-1759903553651-4bb47d08b24e",
+      "dark": "https://images.unsplash.com/photo-1759903553651-4bb47d08b24e",
+      "alt": "Professional working on laptop in modern office"
+    },
+    "google_logo_cover": {
+      "url": "https://images.unsplash.com/photo-1688235142578-c4e1523c6347",
+      "alt": "Google logo signage"
+    },
+    "microsoft_logo_cover": {
+      "url": "https://images.unsplash.com/photo-1704089272382-201cf5c1bbbb",
+      "alt": "Microsoft logo signage"
+    },
+    "apple_logo_cover": {
+      "url": "https://images.unsplash.com/photo-1621768216002-5ac171876625",
+      "alt": "Apple logo signage"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Use 'Plus Jakarta Sans' for typography. It provides the clean, legible structure required for professional environments.",
+    "Color Palette: Strictly implement the provided Navy Blue (`#1E3A8A`), Teal (`#0D9488`), and White (`#FFFFFF`) palette per user requirements. Ensure Teal is used for actionable items (buttons, active states) and Navy for strong structural elements.",
+    "Dashboard Layouts: Utilize card-based single-column layouts for maximum scannability on mobile. Ensure CTAs like 'Apply Now' are sticky at the bottom over scrolling content, wrapped in a glassmorphism container.",
+    "Application Tracking: Implement visually distinct status badges for the 5 application states (Applied, Under Review, Shortlisted, Rejected, Hired). Use color coding (e.g., Teal for Hired/Shortlisted, Red for Rejected, Navy for Applied).",
+    "Candidate Management: For Employer screens, use compact cards to display candidates instead of dense data tables, enabling easy swipe/thumb actions.",
+    "Imagery: Always apply a top-down gradient scrim (transparent to surfaceInverse) when placing text over the hero image. Use the provided company logo imagery as rich header covers for job listings.",
+    "Role Navigation: Ensure the App implements distinct bottom tab navigation based on the authenticated user's role (Seeker vs Employer). Admin panel may utilize a drawer if tabs get too crowded."
+  ]
+}
